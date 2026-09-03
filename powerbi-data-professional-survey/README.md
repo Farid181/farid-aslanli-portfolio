@@ -36,6 +36,8 @@ An end-to-end Power BI data analytics project analyzing survey responses from **
 ![Dashboard Overview_Canada](screenshots/dashboard_overview_Canada.png)
 ![Dashboard Overview_UK](screenshots/dashboard_overview_UK.png)
 ![Dashboard Overview_India](screenshots/dashboard_overview_India.png)
+![Dashboard Overview_Data_Analyst](screenshots/dashboard_overview_Data_Analyst.png)
+![Dashboard Overview_Difficulty](screenshots/dashboard_overview_Difficulty.png)
 
 ---
 
