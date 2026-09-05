@@ -1,32 +1,39 @@
 # 📊 Data Professional Survey Dashboard (Power BI)
 
-An end-to-end Power BI data analytics project analyzing survey responses from **630 data professionals** worldwide. This project covers the complete data analytics lifecycle—from raw data ingestion and ETL processing to advanced data modeling and interactive visualization.
+An end-to-end Power BI data analytics project analyzing survey responses from **630 data professionals** worldwide. The project covers the main stages of the analytics workflow, from data cleaning and transformation to DAX calculations and interactive dashboard development.
 
 ---
 
 ## 🛠️ Project Workflow & Technical Highlights
 
 ### 1. Power Query & ETL (Data Transformation)
-* Cleaned and prepped raw survey responses.
-* Handled missing values, standardized messy text columns, and transformed data types to ensure high data quality.
-* Created custom conditional columns to segment data effectively.
+* Imported and prepared raw survey data using **Power Query**.
+* Cleaned missing and inconsistent values and standardized text fields.
+* Transformed data types to ensure data quality and consistency.
+* Created **Custom Columns** in Power Query to prepare and categorize the data for analysis.
 
-### 2. Data Modeling & DAX Measures
-* Built a robust star/relational data model.
-* Wrote custom **DAX measures** for complex calculations:
-  * **Average Salary** across different job titles and experience levels.
-  * **Age Demographics** and regional distributions.
-  * **Satisfaction Scores** (Work/life balance vs. Salary satisfaction).
+### 2. DAX & Data Analysis
+* Created **DAX measures** to calculate key analytical metrics.
+* Calculated **Average Salary** dynamically based on the selected data.
+* Used DAX measures for **Average Age** and survey satisfaction metrics.
+* Calculated **Work/Life Balance** and **Current Salary Satisfaction** scores based on survey responses.
+* Used **MIN** and **MAX** values to dynamically control the Gauge visuals according to the selected survey responses.
 
 ### 3. Interactive Dashboard & Visualization
-* Designed dynamic cross-filtering charts allowing users to click on any visual to filter the entire report.
-* Utilized KPI cards, bar charts, and gauge visuals to highlight key performance indicators.
+* Designed an interactive Power BI dashboard to explore survey results.
+* Implemented **cross-filtering** between visuals, allowing users to interactively filter the dashboard by country, programming language, and other categories.
+* Used **Tree Map, Bar Chart, Donut Chart, Gauge, and KPI Card** visuals.
+* Designed the dashboard to present key metrics and survey trends in a clear and user-friendly format.
 
 ---
 
 ## 📈 Key Insights
-* **Salary Disparities:** Average salary varies significantly across roles, with *Data Scientists* and *Data Engineers* leading the compensation tiers.
-* **Work/Life Balance:** Work/life balance satisfaction averages **5.74/10**, trailing slightly behind overall compensation satisfaction.
+
+* **Salary Differences:** Average salary varies across different job titles, with Data Scientists and Data Engineers among the higher-paying roles in the dataset.
+* **Programming Languages:** Python is the most commonly reported favorite programming language among survey participants.
+* **Work/Life Balance:** Survey participants report varying levels of satisfaction with their work/life balance.
+* **Career Entry Difficulty:** Responses show different perceptions of how difficult it is to break into the data field.
+* **Interactive Analysis:** Selecting countries, job titles, or programming languages dynamically updates the dashboard metrics and visualizations.
 
 ---
 
