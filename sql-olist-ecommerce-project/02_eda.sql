@@ -78,8 +78,7 @@ SELECT
 FROM olist.order_items oi
 JOIN olist.orders o ON oi.order_id = o.order_id
 WHERE o.order_status = 'delivered';
--- Note: filtering to order_status = 'delivered' was a deliberate correction
--- to avoid inflating revenue with cancelled/undelivered orders
+-- Note: filtered to order_status = 'delivered' to avoid inflating revenue with cancelled/undelivered orders
 
 -- 6.2 Geographic distribution (top 10 customer cities)
 SELECT TOP 10
