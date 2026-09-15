@@ -1,4 +1,4 @@
-# 🛒 Olist E-Commerce Analytics Project (SQL)
+# 🛒 Olist E-Commerce Analytics Project (SQL + Power BI)
 
 An end-to-end SQL analytics project on the **Olist Brazilian E-Commerce dataset** (~100K orders, 9 relational tables). The project covers the main stages of a real analytics workflow: exploring an unfamiliar database, finding and fixing data quality issues, building a customer segmentation model, and pulling out business insights.
 
@@ -14,15 +14,17 @@ An end-to-end SQL analytics project on the **Olist Brazilian E-Commerce dataset*
 * Ran a structured **8-step EDA process**: structure → data quality → date range → key metrics → categories → segmentation → rankings → cross-checking metrics against each other.
 * Found **814 duplicate `review_id` values** in the reviews table during the data quality check.
 
-### 3. Data Cleaning
+### 3. Data Cleaning & Modeling
 * Built `gold.dim_order_reviews_clean` using `ROW_NUMBER()` to remove the duplicate reviews, keeping only the latest version of each one.
+* Built a clean **Star Schema** in Power BI, handling relationships and creating custom measures (like separating column and line metrics to fix label overlap issues).
 
 ### 4. Customer Segmentation (RFM)
 * Scored every customer on **Recency, Frequency, and Monetary** value and grouped them into 6 segments (Champions, Loyal, New, At Risk, Potential Loyalist, Lost).
 * `NTILE(5)` didn't work for Frequency — 97% of customers had placed exactly one order, so there wasn't enough variety to split them into 5 real groups. Scored that one manually instead; Recency and Monetary worked fine with `NTILE(5)`.
 
-### 5. Business Insight Analysis
+### 5. Business Insight Analysis & BI Design
 * Compared review scores for delayed vs. on-time deliveries to check whether delivery performance actually affects customer satisfaction.
+* Designed an executive Power BI dashboard using professional corporate branding, custom logo, and optimized font sizes (9pt) for clear data labels.
 
 ---
 
@@ -35,7 +37,9 @@ An end-to-end SQL analytics project on the **Olist Brazilian E-Commerce dataset*
 
 ---
 
-## 📷 Query & Result Screenshots
+## 📷 Project Screenshots & Visualizations
+
+### 🔍 SQL & Data Quality Phase
 
 ![Duplicate reviews found during EDA](screenshots/01_duplicate_reviews_finding.png)
 *Duplicate `review_id` values found during the data quality check*
@@ -54,7 +58,39 @@ An end-to-end SQL analytics project on the **Olist Brazilian E-Commerce dataset*
 
 ---
 
-## 📂 Project Files
+### 📊 Power BI Dashboard Phase
+
+### 📊 Executive Overview
+![Dashboard Overview](screenshots/OLIST_dashboard_overview.png)
+*Full executive summary featuring high-level KPIs, revenue trends, payment distributions, and category breakdowns.*
+
+### 👑 Champions Segment Deep-Dive
+![Champions Filtered](screenshots/OLIST_dashboard_champions.png)
+*Filtering the dashboard by the "Champions" tier to isolate VIP customer behavior and preferred product categories.*
+
+### 📅 Temporal Filtering (2018 Performance)
+![2018 Filtered](screenshots/OLIST_dashboard_2018.png)
+*Isolating the peak operating year (2018) via interactive year slicers.*
+
+### ⚠️ Risk & Retention Analysis (2017 Lost Customers)
+![2017 Lost](screenshots/OLIST_dashboard_2017_lost.png)
+*Analyzing the behavioral patterns and payment preferences of "Lost" customers during 2017.*
+
+### 💳 Payment Preferences for At-Risk Users
+![At Risk Payment](screenshots/OLIST_dashboard_at_risk_payment.png)
+*Cross-filtering "At Risk" customers to examine their preferred transaction methods.*
+
+### 🚀 Platform Inception (2016 Overview)
+![2016 Overview](screenshots/OLIST_dashboard_2016_overview.png)
+*Inspecting baseline metrics and initial traction during Olist's launch year (2016).*
+
+### 📍 Regional Distribution (São Paulo Focus)
+![Top State SP](screenshots/OLIST_dashboard_top_state_sp.png)
+*Isolating orders and revenue originating from the primary market region (São Paulo).*
+
+---
+
+## 📂 Project Files & Structure
 
 * [`01_database_setup.sql`](01_database_setup.sql) — schema, tables, raw data load
 * [`02_eda.sql`](02_eda.sql) — 8-step exploratory data analysis
@@ -63,7 +99,8 @@ An end-to-end SQL analytics project on the **Olist Brazilian E-Commerce dataset*
 
 ---
 
-## 🔜 Next Steps
-
-* [ ] Build a Power BI dashboard on the `gold` schema views (KPIs, delivery performance, customer segments)
-* [ ] Publish an interactive dashboard link
+## ✅ Project Status
+* [x] End-to-end data pipeline and `gold` schema architecture built in SQL Server
+* [x] Exploratory Data Analysis, data cleaning, and RFM customer segmentation implemented
+* [x] Executive Power BI dashboard designed with custom measures and interactive filters
+* [x] Portfolio documentation and visual showcase published successfully
