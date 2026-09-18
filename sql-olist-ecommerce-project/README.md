@@ -105,3 +105,6 @@ An end-to-end SQL analytics project on the **Olist Brazilian E-Commerce dataset*
 * [x] Executive Power BI dashboard designed with custom measures and interactive filters
 * [x] Portfolio documentation and visual showcase published successfully
 
+
+https://app.powerbi.com/groups/me/reports/ea10bbfd-2b97-481d-924b-4bb5f92608d6/18b24161ca2248989d8b?experience=power-bi
+
