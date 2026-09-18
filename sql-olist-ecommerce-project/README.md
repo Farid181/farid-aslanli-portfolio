@@ -96,6 +96,7 @@ An end-to-end SQL analytics project on the **Olist Brazilian E-Commerce dataset*
 * [`02_eda.sql`](02_eda.sql) — 8-step exploratory data analysis
 * [`03_gold_views.sql`](03_gold_views.sql) — cleaned reviews + RFM segmentation views
 * [`04_validation_and_insights.sql`](04_validation_and_insights.sql) — model validation + key findings
+* **📊 [View Project Presentation (OLIST.pptx)](OLIST.pptx)** — Download or view the executive dashboard presentation.
 
 ---
 
@@ -104,7 +105,4 @@ An end-to-end SQL analytics project on the **Olist Brazilian E-Commerce dataset*
 * [x] Exploratory Data Analysis, data cleaning, and RFM customer segmentation implemented
 * [x] Executive Power BI dashboard designed with custom measures and interactive filters
 * [x] Portfolio documentation and visual showcase published successfully
-
-
-https://app.powerbi.com/groups/me/reports/ea10bbfd-2b97-481d-924b-4bb5f92608d6/18b24161ca2248989d8b?experience=power-bi
 
