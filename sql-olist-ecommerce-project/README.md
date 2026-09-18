@@ -104,3 +104,5 @@ An end-to-end SQL analytics project on the **Olist Brazilian E-Commerce dataset*
 * [x] Exploratory Data Analysis, data cleaning, and RFM customer segmentation implemented
 * [x] Executive Power BI dashboard designed with custom measures and interactive filters
 * [x] Portfolio documentation and visual showcase published successfully
+
+https://app.powerbi.com/groups/me/reports/ea10bbfd-2b97-481d-924b-4bb5f92608d6/18b24161ca2248989d8b?ctid=a830f566-8c60-43cf-9f13-939301bec745&experience=power-bi&bookmarkGuid=6ad26aea-16e6-4c48-ad3d-d23b8867df4c
