@@ -9,10 +9,11 @@
   4. Default Rate by Loan Purpose           8. Short-Term Employment Risk Check
 
   Key findings: DTI > 40%, credit scores 520-599, and tenure <2 years 
-  show the highest correlation with loan defaults.
+  show the highest association with loan defaults.
 ********************************--------------------------------***************/
 
-CREATE DATABASE CreditRiskAnalytics;
+IF DB_ID('CreditRiskAnalytics') IS NULL
+    CREATE DATABASE CreditRiskAnalytics;
 GO
 
 USE CreditRiskAnalytics;
@@ -22,6 +23,8 @@ GO
 --------------------------------------------------------------------------------
 -- STEP 1: OVERALL PORTFOLIO DEFAULT RATE
 --------------------------------------------------------------------------------
+DROP TABLE IF EXISTS dbo.overall_defaults;
+
 SELECT 
     COUNT(*) AS total_loans,
     SUM(CAST(defaulted AS INT)) AS total_defaults,
@@ -40,6 +43,8 @@ SELECT
 	MAX(credit_score) AS max_credit_score
 FROM dbo.borrower_profiles
 */
+
+DROP TABLE IF EXISTS dbo.default_rate_by_credit_score_range;
 
 SELECT
     CASE 
@@ -71,12 +76,27 @@ GROUP BY
 --------------------------------------------------------------------------------
 -- STEP 3: DEFAULT RATE BY DEBT-TO-INCOME (DTI) RATIO
 --------------------------------------------------------------------------------
+-- DATA QUALITY CHECK: do the bucketed columns contain decimal values?
+-- Result: dti_ratio has 540 decimal values (e.g. 29.5); years_employed has 0.
+-- Why it matters: a range like BETWEEN 20 AND 29 skips values such as 29.5,
+-- which would then fall through to ELSE and be wrongly counted as '50+'.
+-- Fix: half-open ranges (< 30, < 40, < 50) leave no gaps between buckets.
+SELECT COUNT(*) AS decimal_dti_rows
+FROM dbo.loan_applications 
+WHERE dti_ratio <> FLOOR(dti_ratio);
+
+SELECT COUNT(*) AS decimal_tenure_rows
+FROM dbo.borrower_profiles 
+WHERE years_employed <> FLOOR(years_employed);
+
+DROP TABLE IF EXISTS dbo.default_rate_by_dti;
+
 SELECT 
     CASE 
         WHEN dti_ratio < 20 THEN '0-19'
-        WHEN dti_ratio BETWEEN 20 AND 29 THEN '20-29'
-        WHEN dti_ratio BETWEEN 30 AND 39 THEN '30-39'
-        WHEN dti_ratio BETWEEN 40 AND 49 THEN '40-49'
+        WHEN dti_ratio < 30 THEN '20-29'
+        WHEN dti_ratio < 40 THEN '30-39'
+        WHEN dti_ratio < 50 THEN '40-49'
         ELSE '50+'
     END AS dti_ratio_range,
     COUNT(*) AS total_loans,
@@ -87,9 +107,9 @@ FROM dbo.loan_applications
 GROUP BY 
     CASE 
         WHEN dti_ratio < 20 THEN '0-19'
-        WHEN dti_ratio BETWEEN 20 AND 29 THEN '20-29'
-        WHEN dti_ratio BETWEEN 30 AND 39 THEN '30-39'
-        WHEN dti_ratio BETWEEN 40 AND 49 THEN '40-49'
+        WHEN dti_ratio < 30 THEN '20-29'
+        WHEN dti_ratio < 40 THEN '30-39'
+        WHEN dti_ratio < 50 THEN '40-49'
         ELSE '50+'
     END;
 
@@ -97,6 +117,8 @@ GROUP BY
 --------------------------------------------------------------------------------
 -- STEP 4: DEFAULT RATE BY LOAN PURPOSE
 --------------------------------------------------------------------------------
+DROP TABLE IF EXISTS dbo.default_rate_by_loan_purpose;
+
 SELECT    
     loan_purpose,
     COUNT(*) AS total_loans,
@@ -111,6 +133,8 @@ ORDER BY default_percentage DESC;
 --------------------------------------------------------------------------------
 -- STEP 5: LOAN AMOUNT VS. DEFAULT STATUS
 --------------------------------------------------------------------------------
+DROP TABLE IF EXISTS dbo.default_by_loan_amount;
+
 SELECT
     defaulted,
     COUNT(*) AS total_loans,
@@ -125,6 +149,8 @@ GROUP BY defaulted;
 --------------------------------------------------------------------------------
 -- STEP 6: DEFAULT RISK BY EMPLOYMENT STATUS
 --------------------------------------------------------------------------------
+DROP TABLE IF EXISTS dbo.default_rate_by_employment_status;
+
 SELECT
     bp.employment_status,
     COUNT(*) AS total_loans,
@@ -141,6 +167,10 @@ ORDER BY default_percentage DESC;
 --------------------------------------------------------------------------------
 -- STEP 7: DEFAULT RISK BY EMPLOYMENT TENURE (YEARS EMPLOYED)
 --------------------------------------------------------------------------------
+-- Note: years_employed contains only whole numbers (checked in Step 3),
+-- so BETWEEN ranges leave no gaps here.
+DROP TABLE IF EXISTS dbo.default_rate_by_employment_tenure;
+
 WITH LoanData AS (
     SELECT 
         CASE 
@@ -174,6 +204,8 @@ ORDER BY
 --------------------------------------------------------------------------------
 -- STEP 8: TARGETED RISK CHECK FOR SHORT-TERM EMPLOYED BORROWERS (<2 YEARS)
 --------------------------------------------------------------------------------
+DROP TABLE IF EXISTS dbo.default_rate_by_employment_group;
+
 SELECT 
     CASE 
         WHEN bp.years_employed < 2 THEN '<2 years'
