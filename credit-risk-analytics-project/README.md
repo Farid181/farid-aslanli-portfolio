@@ -49,7 +49,7 @@ Ran a structured **8-step EDA process**:
 ## 📈 Key Insights
 
 - **Credit score:** default risk falls steadily as credit health improves, from **49.14%** in the 520–599 bracket to **29.03%** (600–649), **28.00%** (650–699), **16.28%** (700–749) and **11.69%** (750+).
-- **DTI threshold at 40%:** below 40% DTI, default rates stay between **11.21% and 16.67%**. They then jump to **23.71%** at 40–49% and **34.32%** at 50%+. The 50%+ group holds **45% of all loans but ~64% of all defaults** (93 of 146).
+- **DTI threshold at 40%:** below 40% DTI, default rates stay between **11.21% and 16.67%**. They then jump to **23.71%** at 40–49% and **34.32%** at 50%+. To put it simply: borrowers with a DTI above 50% hold about 45% of all loans, but they account for **almost two-thirds (~64%) of all defaults** (93 out of 146).
 - **Short employment tenure:** borrowers employed for **less than 2 years** default at **34.52%**, versus **22.63%** for everyone else. The pattern is non-linear: 2–5 years is the safest group (16.44%), while 6–10 years rises to 30.00% and 10+ years sits at 22.99%.
 - **Loan purpose:** default rates range from **20.59%** (Medical Expenses) to **32.14%** (Wedding), with Home Improvement (28.57%) and Auto Loan (27.12%) next.
 - **Employment status** is a weak differentiator: all categories sit between **22.73%** (Contract) and **27.69%** (Part-Time), close to the 24.29% portfolio average.
@@ -60,9 +60,9 @@ Ran a structured **8-step EDA process**:
 ---
 
 ## ⚠️ Limitations
-- The dataset is small (**601 loans**), and some segments are very small (e.g. 48 loans in the 0–19 DTI bracket, 51–70 loans per loan purpose), so small differences between segments should be treated as indicative rather than conclusive.
-- The analysis shows **association, not causation**, and does not include statistical significance testing.
-- Each factor is analyzed on its own; combined effects (e.g. low credit score *and* high DTI) are a natural next step.
+- **Dataset scale:** The dataset is relatively small (**601 loans**), and some segments have limited sample sizes (e.g., 48 loans in the 0–19 DTI bracket), meaning differences point to trends rather than absolute rules.
+- **Association over causation:** The analysis reveals strong patterns and correlations, but does not run formal statistical testing to prove direct cause-and-effect.
+- **Isolated variables:** Each factor is evaluated on its own; analyzing combined risk factors (such as a low credit score *plus* a high DTI together) is the logical next step.
 
 ---
 
