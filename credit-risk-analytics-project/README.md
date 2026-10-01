@@ -60,6 +60,7 @@ Ran a structured **8-step EDA process**:
 
 ### Executive Overview
 ![Dashboard Overview](screenshots/01_credit_risk_dashboard_overview.png)
+
 *Executive summary with key risk KPIs, default distributions, and borrower segment filters.*
 
 ### Default Rate by Credit Score
