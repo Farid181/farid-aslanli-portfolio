@@ -72,30 +72,37 @@ Ran a structured **8-step EDA process**:
 
 ### Executive Overview
 ![Dashboard Overview](screenshots/01_credit_risk_dashboard_overview.png)
+
 *Executive summary with key risk KPIs, default distributions, and borrower segment filters.*
 
 ### Default Rate by Credit Score
 ![Credit Score Risk](screenshots/02_credit_score_risk.png)
+
 *Default rate across credit score ranges, highlighting the 520–599 high-risk bracket.*
 
 ### Default Rate by DTI Ratio
 ![DTI Impact](screenshots/03_dti_impact.png)
+
 *Default percentage by debt-to-income tier, with a sharp increase above 40%.*
 
 ### Default Rate by Loan Purpose
 ![Loan Purpose Risk](screenshots/04_loan_purpose_risk.png)
+
 *Loan purposes ranked by default rate, with Wedding and Home Improvement at the top.*
 
 ### Default Rate by Employment Tenure
 ![Employment Tenure](screenshots/05_employment_tenure.png)
+
 *Impact of employment length on default, especially for borrowers with <2 years.*
 
 ### Default Rate by Employment Status
 ![Employment Status](screenshots/06_employment_status.png)
+
 *Default rate variation across employment categories.*
 
 ### Loan Amount: Defaulted vs. Non-Defaulted
 ![Loan Amount](screenshots/07_default_by_loan_amount.png)
+
 *Average loan size for defaulted and non-defaulted loans.*
 
 ---
