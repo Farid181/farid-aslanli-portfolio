@@ -1,82 +1,109 @@
 # 💳 Credit Risk Analytics Project (SQL + Power BI)
 
-An end-to-end data analytics project designed to evaluate **credit risk** and analyze **loan default patterns**. The project covers the main stages of a real financial analytics workflow: exploring relational loan and borrower tables, structuring a comprehensive 8-step EDA framework in SQL, extracting key risk metrics, and designing an interactive Power BI dashboard to uncover high-risk borrower segments.
+An end-to-end analytics project on **loan default risk**. The project covers the main stages of a real credit-risk workflow: exploring relational loan and borrower tables in SQL Server, segmenting borrowers into risk brackets, extracting key default metrics, and presenting the findings in an interactive Power BI dashboard.
+
+---
+
+## 🎯 Business Question
+
+> **Which borrower characteristics are most strongly associated with loan default, and where does portfolio risk concentrate?**
+
+The analysis looks at credit score, debt-to-income (DTI) ratio, loan purpose, loan amount, employment status and employment tenure to identify the segments a lender should watch most closely.
 
 ---
 
 ## 🛠️ Project Workflow & Technical Highlights
 
-### 1. Database Setup & Architecture
-- Structured relational tables (`loan_applications` and `borrower_profiles`) in **SQL Server** to manage loan records and borrower demographics efficiently.
-- Prepared clean analytical datasets to track portfolio exposure, default distribution, and key risk metrics.
+### 1. Database & Data Model
+* Worked in **SQL Server** with two relational tables: `loan_applications` (loan-level records and default flag) and `borrower_profiles` (credit score, employment status, tenure), linked by `borrower_id`.
+* Each analysis step is saved as its own result table (`SELECT ... INTO`), so the outputs feed directly into Power BI.
 
 ### 2. Exploratory Data Analysis (EDA)
-- Executed a structured **8-step EDA process**: overall portfolio default rates, credit score risk brackets, debt-to-income (DTI) thresholds, loan purpose analysis, loan amount comparisons, employment status, tenure assessment, and short-term employment risk checks.
-- Uncovered critical portfolio risk drivers, identifying exact thresholds where default probabilities surge.
+Ran a structured **8-step EDA process**:
 
-### 3. Risk Metrics & Segmentation
-- Categorized continuous financial variables (such as credit scores and DTI ratios) into logical risk brackets using conditional `CASE` statements and CTEs.
-- Evaluated borrower vulnerabilities across employment types and tenure lengths to isolate high-risk segments.
+| Step | Analysis |
+|------|----------|
+| 1 | Overall portfolio default rate |
+| 2 | Default rate by credit score range |
+| 3 | Default rate by DTI ratio range |
+| 4 | Default rate by loan purpose |
+| 5 | Loan amount vs. default status |
+| 6 | Default rate by employment status |
+| 7 | Default rate by employment tenure |
+| 8 | Targeted check: borrowers with <2 years of employment |
 
-### 4. Business Insight Analysis & BI Design
-- Analyzed the correlation between high DTI ratios (>40%), low credit scores (520–599), short employment tenure (<2 years), and loan defaults.
-- Designed an executive Power BI dashboard using professional corporate branding, clear metrics cards, and optimized data layouts to visualize default rates interactively.
+### 3. Risk Segmentation
+* Converted continuous variables (credit score, DTI, years employed) into risk brackets using `CASE` expressions.
+* Used a **CTE** to keep the tenure bucketing readable and to apply a custom sort order to the output.
+* Standardized every step on the same three metrics: `total_loans`, `total_defaults`, `default_percentage`.
+
+### 4. Dashboard Design (Power BI)
+* Built an executive dashboard with KPI cards, default-rate charts per risk driver, and interactive filters for borrower segments.
 
 ---
 
 ## 📈 Key Insights
 
-- **Credit Score Impact:** The credit score bucket with the highest default rate is **520–599** (49.14%), showing a strong inverse correlation between credit health and default risk[cite: 3].
-- **Debt-to-Income (DTI) Threshold:** Borrowers with a DTI above **40%** experience significantly higher default vulnerability, with ratios exceeding 50% pushing default rates past **31.7%**[cite: 3].
-- **Loan Purpose Vulnerability:** **Wedding** loans exhibit the highest default rate at approximately **32%**, followed by Home Improvement (~29%)[cite: 3].
-- **Loan Size Independence:** The average loan amount does not differ drastically between defaulted (~$22.57K) and non-defaulted (~$22.01K) loans, proving that loan size alone is not the primary risk driver[cite: 3, 9].
-- **Employment Tenure Risk:** Borrowers with less than **2 years** of employment tenure present a much higher default rate (**34.52%**) compared to long-term groups[cite: 3, 7].
+* **Credit score is the strongest signal:** the **520–599** bracket has the highest default rate at **49.14%**, with default risk falling steadily as credit scores rise.
+* **High DTI raises default risk:** borrowers with a DTI above **40%** default noticeably more often, and the **50%+** bracket exceeds **31.7%**.
+* **Loan purpose matters:** **Wedding** loans have the highest default rate (~**32%**), followed by **Home Improvement** (~**29%**).
+* **Loan size is not a differentiator:** average loan amounts are very close for defaulted (~$22.57K) and non-defaulted (~$22.01K) loans, so *who* borrows matters more than *how much*.
+* **Short tenure is a red flag:** borrowers employed for **less than 2 years** default at **34.52%**, well above longer-tenure groups.
+
+> 💡 **Takeaway:** Risk concentrates in borrowers with low credit scores, DTI above 40% and short employment history. These are the three filters a lender could prioritize in underwriting.
 
 ---
 
 ## 📷 Project Screenshots & Visualizations
 
-### 📊 Power BI Dashboard Phase
+### 📊 Power BI Dashboard
 
-### 1. Executive Overview
+### Executive Overview
 ![Dashboard Overview](screenshots/01_credit_risk_dashboard_overview.png)
-*Full executive summary featuring key risk KPIs, default distributions, and borrower segment filters[cite: 3].*
+*Executive summary with key risk KPIs, default distributions, and borrower segment filters.*
 
-### 2. Default Rate by Credit Score
+### Default Rate by Credit Score
 ![Credit Score Risk](screenshots/02_credit_score_risk.png)
-*Default rates across different credit score ranges, highlighting the 520–599 high-risk bucket[cite: 3, 5].*
+*Default rate across credit score ranges, highlighting the 520–599 high-risk bracket.*
 
-### 3. Default Rate by DTI Ratio
+### Default Rate by DTI Ratio
 ![DTI Impact](screenshots/03_dti_impact.png)
-*Default percentage breakdown by Debt-to-Income ratio tiers[cite: 3, 6].*
+*Default percentage by debt-to-income tier.*
 
-### 4. Default Rate by Loan Purposes
+### Default Rate by Loan Purpose
 ![Loan Purpose Risk](screenshots/04_loan_purpose_risk.png)
-*Identifying high-risk loan purposes such as Wedding and Home Improvement[cite: 3, 7].*
+*Loan purposes ranked by default rate, with Wedding and Home Improvement at the top.*
 
-### 5. Default Rate by Employment Tenure
+### Default Rate by Employment Tenure
 ![Employment Tenure](screenshots/05_employment_tenure.png)
-*Impact of employment tenure and short-term employment (<2 years) on defaults[cite: 3, 8].*
+*Impact of employment length on default, especially for borrowers with <2 years.*
 
-### 6. Default Rate by Employment Status
+### Default Rate by Employment Status
 ![Employment Status](screenshots/06_employment_status.png)
-*Default variations across Part-Time, Self-Employed, Full-Time, and other categories[cite: 3, 9].*
+*Default rate variation across employment categories.*
 
-### 7. Default by Loan Amount
+### Loan Amount: Defaulted vs. Non-Defaulted
 ![Loan Amount](screenshots/07_default_by_loan_amount.png)
-*Comparison of average loan sizes for defaulted vs. non-defaulted portfolios[cite: 3].*
+*Average loan size for defaulted and non-defaulted loans.*
 
 ---
 
 ## 📂 Project Files & Structure
 
-- [`eda.sql`](eda.sql) — 8-step exploratory data analysis and risk metrics extraction
-- [`CREDIT RISK DASHBOARD.pbix`](CREDIT RISK DASHBOARD.pbix) — Executive Power BI interactive report
+* [`eda.sql`](eda.sql): 8-step exploratory data analysis and risk metric extraction
+* [`CREDIT RISK DASHBOARD.pbix`](CREDIT%20RISK%20DASHBOARD.pbix): interactive Power BI report
+* `screenshots/`: dashboard visuals used in this README
+
+---
+
+## 🧰 Tools & Skills Demonstrated
+
+**SQL Server** · `CASE` bucketing · CTEs · joins · aggregations · `SELECT ... INTO` · **Power BI** · dashboard design · risk segmentation · business storytelling
 
 ---
 
 ## ✅ Project Status
-- [x] Relational schema architecture and data structuring built in SQL Server
-- [x] Exploratory Data Analysis and risk metrics extraction implemented via 8-step framework
-- [x] Executive Power BI dashboard designed with custom measures and risk indicators
-- [x] Portfolio documentation and visual showcase published successfully
+- [x] Relational data structure and analysis tables built in SQL Server
+- [x] 8-step EDA and risk metric extraction completed
+- [x] Power BI dashboard designed with risk KPIs and interactive filters
+- [x] Documentation and visual showcase published
