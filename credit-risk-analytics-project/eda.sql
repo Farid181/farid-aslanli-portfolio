@@ -20,7 +20,7 @@ GO
 
 
 --------------------------------------------------------------------------------
--- STEP 1: OVERALL PORTFOLIO DEFAULT RATE
+--- STEP 1: OVERALL PORTFOLIO DEFAULT RATE
 --------------------------------------------------------------------------------
 SELECT 
     COUNT(*) AS total_loans,
